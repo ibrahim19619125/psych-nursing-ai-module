@@ -347,7 +347,7 @@ def risk_level(score):
 st.markdown("""
 <div class="hero">
     <h1>🧠 Psychiatric Nursing AI Teaching Module</h1>
-    <p>Integrating theoretical content with clinical practicum through virtual patient simulation.</p>
+    <p>Integrating theoretical content with clinical practice through virtual patient simulation.</p>
     <p><b>Focus:</b> Depression, Suicide Risk, Schizophrenia, Nursing Process, ECT, Legal and Ethical Care</p>
 </div>
 """, unsafe_allow_html=True)
@@ -368,6 +368,7 @@ tabs = st.tabs([
     "🏠 Overview",
     "📚 Theory Hub",
     "🧑‍⚕️ Virtual Patient",
+    "📂 Clinical Scenario",
     "📝 Clinical Assessment",
     "🩺 Nursing Process",
     "🎯 Quiz",
@@ -396,7 +397,7 @@ with tabs[0]:
 <h3>🎯 Purpose of the Module</h3>
 <p>
 This AI-based teaching module is designed to help nursing students connect psychiatric mental health theory
-with clinical practicum. It provides virtual patient scenarios, clinical assessment tools, nursing care planning,
+with clinical practice. It provides virtual patient scenarios, clinical assessment tools, nursing care planning,
 and self-assessment activities.
 </p>
 </div>
@@ -514,9 +515,40 @@ Try questions about mood, sleep, appetite, hallucinations, suicide, family suppo
                 st.warning("Please write a question first.")
 
 # =========================
-# Clinical Assessment
+# Clinical Scenario
 # =========================
 with tabs[3]:
+    st.markdown('<div class="section-title">📂 Clinical Scenarios</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+<div class="card">
+<h3>Interactive Clinical Scenario Files</h3>
+<p>
+These clinical scenario PDFs are designed to help nursing students apply psychiatric theory in realistic clinical situations.
+Students can review the scenarios, analyze patient conditions, identify nursing diagnoses, and discuss interventions.
+</p>
+</div>
+""", unsafe_allow_html=True)
+
+    scenarios = [
+        ("Clinical Scenario 1", "clinical_scenarios/clinical scenario1.pdf"),
+        ("Clinical Scenario 2", "clinical_scenarios/clinical scenario2.pdf"),
+        ("Clinical Scenario 3", "clinical_scenarios/clinical scenario3.pdf"),
+    ]
+
+    for title, path in scenarios:
+        with open(path, "rb") as file:
+            st.download_button(
+                label=f"📥 Download {title}",
+                data=file,
+                file_name=path.split("/")[-1],
+                mime="application/pdf"
+            )
+
+# =========================
+# Clinical Assessment
+# =========================
+with tabs[4]:
     st.markdown('<div class="section-title">📝 Clinical Assessment Tool</div>', unsafe_allow_html=True)
 
     st.markdown("""
@@ -576,7 +608,7 @@ with tabs[3]:
 # =========================
 # Nursing Process
 # =========================
-with tabs[4]:
+with tabs[5]:
     st.markdown('<div class="section-title">🩺 Nursing Process Builder</div>', unsafe_allow_html=True)
 
     condition = st.selectbox("Select condition", ["Depression with Suicide Risk", "Schizophrenia"])
@@ -640,7 +672,7 @@ with tabs[4]:
 # =========================
 # Quiz
 # =========================
-with tabs[5]:
+with tabs[6]:
     st.markdown('<div class="section-title">🎯 Self-Assessment Quiz</div>', unsafe_allow_html=True)
 
     questions = [
@@ -682,7 +714,7 @@ with tabs[5]:
 # =========================
 # Instructor Guide
 # =========================
-with tabs[6]:
+with tabs[7]:
     st.markdown('<div class="section-title">👩‍🏫 Instructor Guide</div>', unsafe_allow_html=True)
 
     st.markdown("""
@@ -691,6 +723,7 @@ with tabs[6]:
 <ol>
 <li>Start with the Theory Hub to review key psychiatric concepts.</li>
 <li>Use the Virtual Patient tab for interview practice.</li>
+<li>Use the Clinical Scenario tab to download and discuss PDF-based clinical cases.</li>
 <li>Ask students to assess suicide risk using the Clinical Assessment Tool.</li>
 <li>Guide students to build a nursing care plan through the Nursing Process Builder.</li>
 <li>End with the Quiz to evaluate learning outcomes.</li>
@@ -708,7 +741,7 @@ medical diagnosis, or professional psychiatric care.
 # =========================
 # References
 # =========================
-with tabs[7]:
+with tabs[8]:
     st.markdown('<div class="section-title">📖 References</div>', unsafe_allow_html=True)
     st.write("1. Stuart, G. W. (2016). Principles and Practice of Psychiatric Nursing.")
     st.write("2. Videbeck, S. L. (2016). Psychiatric-Mental Health Nursing.")
@@ -721,3 +754,4 @@ st.markdown("""
 Psychiatric Nursing AI Teaching Module | Educational Prototype | Developed for Academic Use
 </div>
 """, unsafe_allow_html=True)
+
